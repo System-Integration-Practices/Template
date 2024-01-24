@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 62.5%;
+  }
+  body {
+    font-family: "Inter", sans-serif;
+    font-size: 1.6rem;
+  }
+  h1 {
+    @apply text-heading-1;
+  }
+  h2 {
+    @apply text-heading-2;
+  }
+  h3 {
+    @apply text-heading-3;
+  }
+  h4 {
+    @apply text-heading-4;
+  }
+
+  input,
+  select,
+  textarea {
+    outline: none;
+    // background-color: transparent;
+  }
+}
+
+@layer components {
+  .input-text {
+    @apply px-8 py-5 border w-full outline-none border-white-30 rounded-2xl text-body-3 text-black placeholder:text-black-30 focus:border-primary-dark-30 focus:text-black invalid:border-secondary2;
+  }
+
+  .input-radio {
+    @apply block w-8 h-8 rounded-full border border-primary-dark-30 opacity-30 relative radio-inner transition-all before:w-6 before:h-6 before:rounded-full before:bg-primary-dark-30 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] before:opacity-0 before:invisible;
+  }
+
+  .pagination {
+    @apply flex items-center justify-end gap-8;
+    .previous.disabled,
+    .next.disabled {
+      opacity: 0.5;
+      /* visibility: hidden; */
+      pointer-events: none;
+    }
+
+    & > li {
+      @apply text-body-4 text-black-40;
+      user-select: none;
+    }
+    & > .selected {
+      @apply text-primary;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+    &:checked + .checkbox-inner {
+      @apply bg-primary border-transparent;
+      & > div {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+    &:checked + .radio-inner {
+      opacity: 1;
+      &::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  .navbar {
+    @apply flex flex-col;
+    &__link {
+      @apply text-body-6 text-black-30 px-7 py-5 rounded-2xl;
+      &:hover {
+        @apply bg-primary-dark-80 text-white;
+      }
+      &.active {
+        @apply text-body-4 text-white bg-primary-dark-90;
+      }
+    }
+  }
+}
